@@ -1,0 +1,36 @@
+﻿@model Turansche_Lorena_Lab5.Models.RiskPredictionViewModel
+
+@{
+    ViewData["Title"] = "Analiză Risc Restaurant";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Detector Risc Siguranță Alimentară</h1>
+    <hr />
+</div>
+
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <form asp-action="Index" method="post">
+            <div class="form-group mb-3">
+                <label class="control-label">Tipul Inspecției</label>
+                <input asp-for="InspectionType" class="form-control" placeholder="ex: Routine Unscheduled" />
+            </div>
+
+            <div class="form-group mb-3">
+                <label class="control-label">Descrierea Abaterii</label>
+                <textarea asp-for="ViolationDescription" class="form-control" rows="3"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Obține Predicție</button>
+        </form>
+
+        @if (!string.IsNullOrEmpty(Model.PredictedRisk))
+        {
+            <div class="alert alert-info mt-4 text-center">
+                <strong>Rezultat Predicție:</strong>
+                <span class="badge bg-warning text-dark">@Model.PredictedRisk</span>
+            </div>
+        }
+    </div>
+</div>
